@@ -14,9 +14,8 @@ struct ContentView: View {
     //private var BMI: Float { (Float(height) ?? 0) + (Float(weight) ?? 0) }
     private var BMI: Float { (Float(weight) ?? 0) / ( (Float(height) ?? 0) * (Float(height) ?? 0) ) * 703 }
     @State var BMIString: String = "";
-    @State var status: String = ""
-    @STate var bmiSTa
-    
+    @State var status: String = "";
+    @State var statusColor: Int = 0;
     
     var body: some View {
         VStack{
@@ -46,7 +45,27 @@ struct ContentView: View {
         Spacer()
         
         HStack{
-            Text(status).foregroundColor(Color.blue);
+            
+            if (statusColor == 0)
+            {
+                Text(status).foregroundColor(.blue);
+            }
+            
+            else if (statusColor == 1)
+            {
+                Text(status).foregroundColor(.green);
+            }
+            
+            else if (statusColor == 2)
+            {
+                Text(status).foregroundColor(.purple);
+            }
+            else
+            {
+                Text(status).foregroundColor(.red);
+            }
+            
+            
         }
         
         Button(action: {
@@ -55,19 +74,23 @@ struct ContentView: View {
             if (BMI < 18)
             {
                 status = "You are Underweight..."
+                statusColor = 0;
             }
             
             else if (BMI >= 18 && BMI < 25 )
             {
                 status = "You are Normal..."
+                statusColor = 1;
             }
             else if (BMI >= 25 && BMI <= 30 )
             {
                 status = "You are Pre-Obese..."
+                statusColor = 2;
             }
             else if (BMI > 30)
             {
                 status = "You are Obsee..."
+                statusColor = 3;
             }
         }) {
             Text("Calculate BMI")
