@@ -14,13 +14,12 @@ struct ContentView: View {
     //private var BMI: Float { (Float(height) ?? 0) + (Float(weight) ?? 0) }
     private var BMI: Float { (Float(weight) ?? 0) / ( (Float(height) ?? 0) * (Float(height) ?? 0) ) * 703 }
     @State var BMIString: String = "";
-    @State var status: String = "";
-    @State var statusColor: Int = 0;
+    @State var status: Int = 0;
     
     var body: some View {
         VStack{
             Text("BMI Calculator")
-        }
+        
 
         HStack{
             Text("Height: ")
@@ -46,23 +45,23 @@ struct ContentView: View {
         
         HStack{
             
-            if (statusColor == 0)
+            if (status == 0)
             {
-                Text(status).foregroundColor(.blue);
+                Text("You are Underweight...").foregroundColor(.blue);
             }
             
-            else if (statusColor == 1)
+            else if (status == 1)
             {
-                Text(status).foregroundColor(.green);
+                Text("You are Normal...").foregroundColor(.green);
             }
             
-            else if (statusColor == 2)
+            else if (status == 2)
             {
-                Text(status).foregroundColor(.purple);
+                Text("You are Pre-Obese...").foregroundColor(.purple);
             }
             else
             {
-                Text(status).foregroundColor(.red);
+                Text("You are Obese...").foregroundColor(.red);
             }
             
             
@@ -73,31 +72,27 @@ struct ContentView: View {
             
             if (BMI < 18)
             {
-                status = "You are Underweight..."
-                statusColor = 0;
+                status = 0;
             }
             
             else if (BMI >= 18 && BMI < 25 )
             {
-                status = "You are Normal..."
-                statusColor = 1;
+                status = 1;
             }
             else if (BMI >= 25 && BMI <= 30 )
             {
-                status = "You are Pre-Obese..."
-                statusColor = 2;
+                status = 2;
             }
             else if (BMI > 30)
             {
-                status = "You are Obsee..."
-                statusColor = 3;
+                status = 3;
             }
         }) {
             Text("Calculate BMI")
         }
         
         
-        
+    }
     }
 }
 
