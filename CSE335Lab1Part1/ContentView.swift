@@ -11,35 +11,38 @@ struct ContentView: View {
     
     @State var height: String = "";
     @State var weight: String = "";
-    //private var BMI: Float { (Float(height) ?? 0) + (Float(weight) ?? 0) }
     private var BMI: Float { (Float(weight) ?? 0) / ( (Float(height) ?? 0) * (Float(height) ?? 0) ) * 703 }
     @State var BMIString: String = "";
-    @State var status: Int = 0;
+    @State var status: Int = -1;
     
     var body: some View {
-        VStack{
-            Text("BMI Calculator")
-        
+        HStack{
+            Text("BMI Calculator").foregroundColor(.blue);
 
+        }
+        VStack{
+        
+            VStack{
         HStack{
             Text("Height: ")
             Spacer()
             Spacer()
-            TextField("", text: $height).keyboardType(.numberPad);
-        }
+            TextField("", text: $height).keyboardType(.decimalPad);        }
         HStack{
             Text("Weight: ")
             Spacer()
             Spacer()
             TextField("", text: $weight).keyboardType(.decimalPad);
         }
-                
+
         HStack{
             Text("BMI: ")
             Spacer()
             Spacer()
             Text(BMIString);
-        }
+                }
+            }
+                
 
         Spacer()
         
@@ -59,13 +62,17 @@ struct ContentView: View {
             {
                 Text("You are Pre-Obese...").foregroundColor(.purple);
             }
-            else
+            else if (status == 3)
             {
                 Text("You are Obese...").foregroundColor(.red);
             }
+            else
+            {
+                Text("");
+            }
             
             
-        }
+        }.padding(100);
         
         Button(action: {
             self.BMIString = "\(self.BMI)"
@@ -92,7 +99,7 @@ struct ContentView: View {
         }
         
         
-    }
+        }.padding(100)
     }
 }
 
