@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var height: Float = 0
-    @State var weight: Float = 0
-    @State var BMI: Float = 0
+    @State var height: Float = 0;
+    @State var weight: Float = 0;
+    @State var BMI: Float = 0;
     @State var status: String = ""
     
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter();
-        formatter.numberStyle = .Float
+        formatter.numberStyle = .decimal
         return formatter
     }()
     
@@ -29,16 +29,22 @@ struct ContentView: View {
             Text("Height: ")
             Spacer()
             Spacer()
-            TextField("", value: $height, format: .number);
+            TextField("", value: $height, formatter: formatter);
         }
         HStack{
             Text("Weight: ")
             Spacer()
             Spacer()
-            TextField("", value: $weight, format: .number);
+            TextField("", value: $weight, formatter: formatter);
         }
-        
-        
+                
+        HStack{
+            Text("BMI: ")
+            Spacer()
+            Spacer()
+            TextField("", value: $weight, formatter: formatter);
+        }
+    
         
         
     }
