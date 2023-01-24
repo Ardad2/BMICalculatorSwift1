@@ -27,7 +27,9 @@ struct ContentView: View {
             Text("Height: ")
             Spacer()
             Spacer()
-            TextField("", text: $height).keyboardType(.decimalPad);        }
+            TextField("", text: $height).keyboardType(.decimalPad);
+            
+        }
         HStack{
             Text("Weight: ")
             Spacer()
@@ -72,12 +74,15 @@ struct ContentView: View {
             }
             
             
-        }.padding(100);
+        }
         
         Button(action: {
+            if (BMI > 0)
+            {
             self.BMIString = "\(self.BMI)"
+            }
             
-            if (BMI < 18)
+            if (BMI > 0 && BMI < 18)
             {
                 status = 0;
             }
